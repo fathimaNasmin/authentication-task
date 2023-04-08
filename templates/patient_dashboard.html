@@ -1,0 +1,28 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+
+{% block main %}
+{% if user.is_authenticated %}
+    <h1 class="text-center my-3 text-secondary">Welcome,{{user.first_name|capfirst}} {{user.last_name|capfirst}}</h1>
+    <h4 class="text-center my-4">Patient Dashboard</h4>
+    <div class="w-50 mx-auto mt-4 mb-4 border border-secondary">
+        <h5 class="text-center my-4">Patient Details</h5>
+        <div class="mx-4">
+            <div class="d-flex justify-content-center">
+                <img class="align-self-center" src="{{ user.profile_picture.url }}" style="height: 150px; width: 150px; border-radius: 50%;">
+
+            </div>
+            <h6>First Name: {{user.first_name|capfirst}}</h6>
+            <h6>Last Name: {{user.last_name|capfirst}}</h6>
+            <h6>Email Address : {{user.email}}</h6>
+            <h6>Address Line 1: {{user.address_line1}}</h6>
+            <h6>City: {{user.address_city}}</h6>
+            <h6>State: {{user.address_state}}</h6>
+            <h6>Pincode: {{user.address_pincode}}</h6>
+        </div>
+
+
+    </div>
+{% endif %}
+{% endblock %}

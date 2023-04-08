@@ -1,0 +1,21 @@
+{% extends 'components/base.html' %}
+{% load static %}
+
+{% block main %}
+{% if user.is_authenticated and user.is_doctor %}
+    <h1 class="text-center my-3 text-secondary">Welcome,Dr.{{user.first_name|capfirst}} {{user.last_name|capfirst}}</h1>
+    <p class="text-center my-3 text-info">You're Already logged In.</p>
+{% elif user.is_authenticated and user.is_patient %}
+    <h1 class="text-center my-3 text-secondary">Welcome,{{user.first_name|capfirst}} {{user.last_name|capfirst}}</h1>
+    <p class="text-center my-3 text-info">You're Already logged In.</p>
+{% else %}
+<h1 class="text-center text-secondary my-5">Welcome</h1>
+<p class="text-center my-4">
+    <a class="text-decoration-none" href="{% url 'login' %}">Get it into your Account.</a>
+</p>
+<p class="text-center my-4 text-secondary">or</p>
+<p class="text-center my-4">
+    <a class="text-decoration-none" href="{% url 'signup' %}">Create a new Account.</a>
+</p>
+{% endif %}
+{% endblock %}
